@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f6ef">
+  <meta name="description" content="Compare grocery protein prices and plan a week of meals on a budget.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Good Measure">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>Good Measure | U.S. Grocery Meal Planner</title>
   <style>
 :root{color-scheme:light;--paper:#f7f6ef;--card:#fffef9;--ink:#1e342b;--muted:#536359;--line:#d9dfd2;--green:#214b39;--pale:#e9efe3;--orange:#e9b15d;font:16px/1.5 "DM Sans",system-ui,sans-serif}
@@ -205,12 +213,12 @@ dialog li{padding-bottom:5px}
 @media(max-width:860px){.prep-cards{grid-template-columns:1fr}.prep-menu-footer{flex-direction:column;align-items:stretch}}
 
 /* Bulk-prep batch colors: background, edge and text */
-.batch-c0{--bb:#fdecd0;--be:#d9963a;--bi:#6b4009}
-.batch-c1{--bb:#d9efe1;--be:#3f8f62;--bi:#1d4b33}
-.batch-c2{--bb:#e3e6fa;--be:#6672c4;--bi:#2e3778}
-.batch-c3{--bb:#f8dfe6;--be:#c0607d;--bi:#72263f}
-.batch-c4{--bb:#d6eef3;--be:#3593a6;--bi:#154d58}
-.batch-c5{--bb:#efe5d2;--be:#9b7a44;--bi:#54401e}
+.batch-c0{--bb:#fdecd0;--be:#d9963a;--bi:#6b4009;--bb-soft:#fef5e5;--be-wash:#f8ecdc;--be-ring:rgba(217,150,58,.25);--be-line:#eed0a6;--be-border:#ecca9c}
+.batch-c1{--bb:#d9efe1;--be:#3f8f62;--bi:#1d4b33;--bb-soft:#eaf6ee;--be-wash:#dcebe3;--be-ring:rgba(63,143,98,.25);--be-line:#a9cdb8;--be-border:#9fc7b0}
+.batch-c2{--bb:#e3e6fa;--be:#6672c4;--bi:#2e3778;--bb-soft:#f0f1fc;--be-wash:#e3e6f4;--be-ring:rgba(102,114,196,.25);--be-line:#bac0e4;--be-border:#b2b8e2}
+.batch-c3{--bb:#f8dfe6;--be:#c0607d;--bi:#72263f;--bb-soft:#fbedf1;--be-wash:#f4e2e8;--be-ring:rgba(192,96,125,.25);--be-line:#e3b7c4;--be-border:#e0b0be}
+.batch-c4{--bb:#d6eef3;--be:#3593a6;--bi:#154d58;--bb-soft:#e8f6f8;--be-wash:#dbecef;--be-ring:rgba(53,147,166,.25);--be-line:#a4ced7;--be-border:#9ac9d2}
+.batch-c5{--bb:#efe5d2;--be:#9b7a44;--bi:#54401e;--bb-soft:#f6f1e6;--be-wash:#ede7dd;--be-ring:rgba(155,122,68,.25);--be-line:#d2c3ab;--be-border:#cdbca2}
 
 /* Calendar: grouped batches and randomize */
 .calendar-tools{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:2px 0 0}
@@ -227,15 +235,15 @@ dialog li{padding-bottom:5px}
 .week-schedule td.batch:not(.joins-prev){padding-top:6px}
 .week-schedule td.batch:not(.joins-next){padding-bottom:6px}
 .week-schedule td.batch.joins-next{border-bottom:1px solid transparent}
-.week-schedule td.batch .cell{box-sizing:border-box;height:100%;padding:6px 8px 6px 9px;border-left:4px solid var(--be);background:linear-gradient(135deg,var(--bb),color-mix(in srgb,var(--bb) 55%,#fff));transition:box-shadow .2s}
+.week-schedule td.batch .cell{box-sizing:border-box;height:100%;padding:6px 8px 6px 9px;border-left:4px solid var(--be);background:linear-gradient(135deg,var(--bb),var(--bb-soft));transition:box-shadow .2s}
 .week-schedule td.batch.joins-prev .cell{border-top-left-radius:0;border-top-right-radius:0}
 .week-schedule td.batch.joins-next .cell{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .week-schedule td.batch .week-recipe,.week-schedule td.batch .randomize{color:var(--bi)}
-.week-schedule td.batch .randomize:hover,.week-schedule td.batch .randomize:focus-visible{background:color-mix(in srgb,var(--be) 18%,#fff);border-color:var(--be)}
+.week-schedule td.batch .randomize:hover,.week-schedule td.batch .randomize:focus-visible{background:var(--be-wash);border-color:var(--be)}
 .week-schedule td.batch .addon-line{color:var(--bi);opacity:.85}
 .week-schedule td.batch-hover .cell{box-shadow:inset 0 0 0 2px var(--be)}
 .batch-chip{display:inline-flex;align-items:center;gap:6px;margin:0 0 1px;color:var(--bi);font-size:.72rem;font-weight:800;line-height:1.3}
-.batch-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--be);box-shadow:0 0 0 3px color-mix(in srgb,var(--be) 25%,transparent)}
+.batch-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--be);box-shadow:0 0 0 3px var(--be-ring)}
 .chip-repeat{display:none}
 .week-schedule td.just-changed .cell{animation:changed 1.1s ease-out}
 @keyframes changed{0%{box-shadow:inset 0 0 0 3px var(--orange);transform:scale(.97)}35%{transform:scale(1.02)}100%{box-shadow:inset 0 0 0 0 transparent;transform:none}}
@@ -247,13 +255,13 @@ dialog li{padding-bottom:5px}
 .cook-days{display:grid;gap:10px;margin-top:10px}
 .cook-day{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .cook-day>strong{flex:0 0 96px}
-.batch-pill{display:flex;align-items:center;gap:10px;min-height:44px;padding:7px 12px;border:1px solid color-mix(in srgb,var(--be) 45%,#fff);border-left:5px solid var(--be);border-radius:12px;background:var(--bb);color:var(--bi);text-align:left;font:inherit;transition:transform .15s,box-shadow .15s}
+.batch-pill{display:flex;align-items:center;gap:10px;min-height:44px;padding:7px 12px;border:1px solid var(--be-line);border-left:5px solid var(--be);border-radius:12px;background:var(--bb);color:var(--bi);text-align:left;font:inherit;transition:transform .15s,box-shadow .15s}
 .batch-pill:hover,.batch-pill:focus-visible{transform:translateY(-1px);box-shadow:0 8px 16px -10px var(--be)}
 .batch-pill strong{display:block;font-size:.86rem}
 .batch-pill small{display:block;font-size:.74rem}
 
 /* Day detail cards */
-.meal.batch-card{border-color:color-mix(in srgb,var(--be) 50%,#fff);border-left:5px solid var(--be);background:linear-gradient(160deg,var(--bb),#fffef9 70%)}
+.meal.batch-card{border-color:var(--be-border);border-left:5px solid var(--be);background:linear-gradient(160deg,var(--bb),#fffef9 70%)}
 p.batch-chip{display:flex;margin:2px 0 4px}
 .addon-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
 .addon-row strong{display:block;font-size:.86rem}
@@ -306,6 +314,43 @@ p.batch-chip{display:flex;margin:2px 0 4px}
 @media(prefers-reduced-motion:reduce){.week-schedule td .cell,.move-handle{transition:none}.week-schedule.is-moving td.drop-hover .cell{transform:none}}
 .move-bar{position:fixed;left:50%;bottom:16px;z-index:900;display:flex;align-items:center;gap:14px;width:max-content;max-width:calc(100% - 24px);padding:9px 9px 9px 16px;border-radius:14px;background:var(--green);color:white;font-size:.9rem;font-weight:650;box-shadow:0 18px 36px -16px #0009;transform:translateX(-50%)}
 .move-bar .secondary{flex:none;min-height:38px;padding:6px 14px}
+
+/* Phones and tablets (iOS Safari, Android Chrome) */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:rgba(33,75,57,.12)}
+dialog{max-height:90vh;max-height:90dvh}
+.move-handle,.randomize,.day-chip,.switch,.segmented,.batch-pill{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+@media(pointer:coarse){
+/* iOS zooms into a focused field whose text is under 16px. */
+input,select,textarea{font-size:16px}
+/* Touch targets at least 44px, per Apple and close to Android's 48dp. */
+.brand,.text-button,.secondary,.primary,select,input[type=text],input[type=number],input[type=search],summary,.check-label,.segmented label{min-height:44px}
+.prep-card .check-label,.calendar-tools .secondary{min-height:44px}
+nav a{display:inline-flex;align-items:center;min-height:44px}
+.slider input{height:44px}
+.day-chip span[aria-hidden]{min-width:48px;min-height:44px}
+.randomize::after,.move-handle::after{content:"";position:absolute;inset:-7px}
+.move-handle::after{inset:-5px -9px}
+.randomize,.move-handle{position:relative}
+}
+@media(max-width:730px){
+/* One swipeable row of section links instead of several wrapped rows. */
+nav{flex-wrap:nowrap;gap:4px;overflow-x:auto;margin:0 -6px;padding:0 0 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+nav::-webkit-scrollbar{display:none}
+/* Fade the right edge so it's clear more links scroll into view. */
+nav{-webkit-mask-image:linear-gradient(90deg,#000 84%,transparent);mask-image:linear-gradient(90deg,#000 84%,transparent)}
+nav a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 8px;border-radius:10px}
+nav a:active{background:var(--pale)}
+}
+/* Touch screens keep hover styles after a tap, so leave out the ones that move things. */
+@media(hover:none){.randomize:hover .icon{transform:none}.batch-pill:hover{transform:none;box-shadow:none}}
+
+/* Install prompt */
+.install-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-top:12px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--pale)}
+.install-banner[hidden]{display:none}
+.install-banner p{margin:0;flex:1 1 240px}
+.install-actions{display:flex;align-items:center;gap:14px}
+.install-actions .primary{margin-top:0}
+@media print{.install-banner{display:none!important}}
 </style>
 </head>
 <body>
@@ -319,6 +364,10 @@ p.batch-chip{display:flex;margin:2px 0 4px}
       <span class="location" id="location-label">U.S. grocery planner</span>
     </div>
   </header>
+  <aside class="frame install-banner" id="install-banner" aria-label="Install the app" hidden>
+    <p><strong>Use Good Measure like an app.</strong> <span id="install-text">Add it to your home screen for one-tap access and offline use.</span></p>
+    <div class="install-actions"><button type="button" class="primary" id="install-app" hidden>Install</button><button type="button" class="text-button" id="install-later">Not now</button></div>
+  </aside>
   <main class="frame" id="main">
     <section class="hero" aria-labelledby="title">
       <div class="hero-copy">
@@ -2913,6 +2962,53 @@ $('#generate-plan').disabled = false;
     if (drag) endDrag();
     cancelMove('Move canceled.');
   });
+})();
+
+
+// Installable app: offline caching where the page is served over HTTPS, and a home-screen prompt on phones.
+(() => {
+  if ('serviceWorker' in navigator && isSecureContext && /^https?:$/.test(location.protocol)) {
+    addEventListener('load',() => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  }
+  const banner = $('#install-banner');
+  const installButton = $('#install-app');
+  const dismissedKey = 'good-measure-install-dismissed';
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const dismissed = (() => { try { return localStorage.getItem(dismissedKey) === '1'; } catch { return false; } })();
+  const touch = matchMedia('(pointer: coarse)').matches;
+  const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  let deferred = null;
+
+  const hide = remember => {
+    banner.hidden = true;
+    if (remember) try { localStorage.setItem(dismissedKey,'1'); } catch {}
+  };
+  if (standalone || dismissed || !/^https?:$/.test(location.protocol)) return;
+
+  // Android and other Chromium browsers offer an install prompt the page can show.
+  addEventListener('beforeinstallprompt',event => {
+    event.preventDefault();
+    deferred = event;
+    if (!touch) return;
+    installButton.hidden = false;
+    banner.hidden = false;
+  });
+  addEventListener('appinstalled',() => hide(true));
+  installButton.addEventListener('click',async () => {
+    if (!deferred) return;
+    deferred.prompt();
+    const {outcome} = await deferred.userChoice.catch(() => ({}));
+    deferred = null;
+    hide(outcome === 'accepted');
+  });
+  $('#install-later').addEventListener('click',() => hide(true));
+
+  // iPhone and iPad install through the Share menu.
+  if (ios) {
+    $('#install-text').textContent = 'Tap the Share button, then Add to Home Screen, for one-tap access and offline use.';
+    $('#install-later').textContent = 'Got it';
+    banner.hidden = false;
+  }
 })();
 </script>
 </body>
